@@ -1,5 +1,6 @@
 "use client";
 
+import DisplayUser from "@/components/DisplayUser";
 import { KnockAPI } from "@/lib/users";
 import { useEffect } from "react"
 
@@ -24,8 +25,17 @@ export default function Home() {
   },[userData1.cuid, userData2.cuid])
 
   return (
-    <main className="flex min-h-screen">
-      knock testing
+    <main className="flex flex-col min-h-screen justify-center items-center">
+      <h1
+      className="text-xl font-semibold m-4"
+      >knock with next</h1>
+
+      <div
+      className="flex gap-[40px] justify-center items-center"
+      >
+        <DisplayUser userData={userData1} />
+        <DisplayUser userData={userData2} />
+      </div>
     </main>
   )
 }
