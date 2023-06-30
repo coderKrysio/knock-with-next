@@ -4,10 +4,11 @@ import NotificationFeed from "./NotificationFeed";
 import { KnockFeedProvider } from "@knocklabs/react-notification-feed";
 
 const DisplayUser = ({
-    userData
+    userData,
+    recipientId
 }:any) => {
     const [message, setMessage] = useState("");
-    const [showToast, setShowToast] = useState(true);
+    // const [showToast, setShowToast] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
     const [messageList,setMessageList] = useState<any>({
@@ -18,9 +19,8 @@ const DisplayUser = ({
     const onSubmit = async (e: any) => {
         e.preventDefault();
         setIsLoading(true);
-        //await notify({ message, showToast, userData.cuid, tenant });
+        KnockAPI.triggerWorkflow(userData.cuid, recipientId ,message);
         setIsLoading(false);
-
         e.target.reset();
     };
     
@@ -40,8 +40,8 @@ const DisplayUser = ({
     return (
         <KnockFeedProvider
         userId={userData.cuid}
-        apiKey={process.env.NEXT_PUBLIC_KNOCK_PUBLIC_API_KEY}
-        feedId={process.env.NEXT_PUBLIC_KNOCK_FEED_CHANNEL_ID}
+        apiKey={process.env.NEXT_PUBLIC_KNOCK_PUBLIC_API_KEY ?? ""}
+        feedId={process.env.NEXT_PUBLIC_KNOCK_FEED_CHANNEL_ID ?? ""}
         >
             <div
             className="flex flex-col border-2 border-black p-10 rounded-lg h-screen w-full"
@@ -51,7 +51,6 @@ const DisplayUser = ({
                 ><NotificationFeed /></div>
                 
                 <p>User Name: {userData.name}</p>
-                <p>Messages: {messageList.items.length}</p>
                 <br />
 
                 <p>Send Message</p>

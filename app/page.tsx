@@ -33,8 +33,8 @@ export default function Home() {
       <div
       className="flex flex-col gap-[40px] w-full p-7"
       >
-        <DisplayUser userData={userData1} />
-        <DisplayUser userData={userData2} />
+        <DisplayUser userData={userData1} recipientId={userData2.cuid} />
+        <DisplayUser userData={userData2} recipientId={userData1.cuid} />
       </div>
     </main>
   )
