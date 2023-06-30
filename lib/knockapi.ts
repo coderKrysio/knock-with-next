@@ -9,7 +9,7 @@ export const KnockAPI = {
         }).catch((err: any) => console.log(err))
     },
 
-    getUser:async (userId: any) => {
+    getUser: async (userId: any) => {
         return await knock.users.get(userId)
         .catch((err: any) => console.log(err))
     },
@@ -20,5 +20,16 @@ export const KnockAPI = {
                 page_size: 5,
             }
         )
+    },
+
+    triggerWorkflow: async (senderId: any, recipientId: any) => {
+        return await knock.workflows.trigger("test", {
+            recipients: [recipientId],
+
+            // optional
+            data: { "project_name": "My Project" },
+            actor: senderId,
+            cancellationKey: "cancel_123",
+        });
     }
 }
