@@ -25,13 +25,13 @@ export default function Home() {
   },[userData1.cuid, userData2.cuid])
 
   return (
-    <main className="flex flex-col min-h-screen justify-center items-center">
+    <main className="flex flex-col min-h-screen justify-center items-center w-screen">
       <h1
       className="text-xl font-semibold m-4"
       >knock with next</h1>
 
       <div
-      className="flex gap-[40px] justify-center items-center"
+      className="flex flex-col gap-[40px] w-full p-7"
       >
         <DisplayUser userData={userData1} />
         <DisplayUser userData={userData2} />
