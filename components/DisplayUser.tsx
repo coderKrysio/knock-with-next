@@ -1,5 +1,5 @@
 import { KnockAPI } from "@/lib/knockapi"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import NotificationFeed from "./NotificationFeed";
 import { KnockFeedProvider } from "@knocklabs/react-notification-feed";
 
@@ -8,34 +8,12 @@ const DisplayUser = ({
     recipientId
 }:any) => {
     const [message, setMessage] = useState("");
-    // const [showToast, setShowToast] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const [messageList,setMessageList] = useState<any>({
-        items: [],
-        pageInfo: {}
-    });
 
     const onSubmit = async (e: any) => {
         e.preventDefault();
-        setIsLoading(true);
         KnockAPI.triggerWorkflow(userData.cuid, recipientId ,message);
-        setIsLoading(false);
         e.target.reset();
     };
-    
-    useEffect(() => {
-        KnockAPI.getMessages(userData.cuid)
-        .then((res: any) => {
-            setMessageList((prev: any) => ({
-                ...prev,
-                items: res.items,
-                pageInfo: res.pageInfo,
-            }))
-            console.log(res)
-        })
-        .catch((err: any) => console.log(err))
-    }, [userData.cuid])
 
     return (
         <KnockFeedProvider
@@ -64,16 +42,6 @@ const DisplayUser = ({
                     className="placeholder:whitespace-normal text-left border-[1px] border-black my-2 p-2 rounded-lg"
                     onChange={(e) => setMessage(e.target.value)}
                     /> 
-                    
-                    <br />
-
-                    {/* <input
-                    type="checkbox"
-                    name="show-toast"
-                    checked={showToast}
-                    onChange={(e) => setShowToast(e.target.checked)}
-                    />
-                    <label htmlFor="show-toast">Show Toast</label> */}
                     
                     <br />
 
