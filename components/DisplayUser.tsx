@@ -35,7 +35,7 @@ const DisplayUser = ({
             console.log(res)
         })
         .catch((err: any) => console.log(err))
-    }, [])
+    }, [userData.cuid])
 
     return (
         <KnockFeedProvider
