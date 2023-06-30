@@ -1,7 +1,7 @@
 "use client";
 
 import DisplayUser from "@/components/DisplayUser";
-import { KnockAPI } from "@/lib/users";
+import { KnockAPI } from "@/lib/knockapi";
 import { useEffect } from "react"
 
 export default function Home() {
