@@ -1,17 +1,18 @@
 const { Knock } = require("@knocklabs/node");
-const knock = new Knock(process.env.KNOCK_API_KEY);
+const knock = new Knock(process.env.NEXT_PUBLIC_KNOCK_API_KEY);
 
-export const Users = async () => {
-    await knock.users.bulkIdentify([
-        {
-            id: "1",
-            name: "John Hammond",
-            email: "jhammond@ingen.net",
-        },
-        {
-            id: "2",
-            name: "Ellie Sattler",
-            email: "esattler@ingen.net",
-        },
-    ]);
+export const KnockAPI = {
+    setIdentify: async (userData: any) => {
+        return await knock.users.identify(userData.cuid, {
+            name: userData.name,
+            email: userData.email,
+        }).catch((res: any) => console.log(res))
+    },
+
+    getUser:async (userId: any) => {
+        return await knock.users.get(userId)
+        .catch((res: any) => console.log(res))
+    },
+
+
 }
