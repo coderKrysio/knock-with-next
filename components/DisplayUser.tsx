@@ -27,6 +27,7 @@ const DisplayUser = ({
         >
             <p>User Name: {userData.name}</p>
             <p>Messages: {messageList.items.length}</p>
+            {/* <p>{messageList.items}</p> */}
         </div>
     )
 }
