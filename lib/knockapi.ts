@@ -22,14 +22,11 @@ export const KnockAPI = {
         )
     },
 
-    triggerWorkflow: async (senderId: any, recipientId: any) => {
+    triggerWorkflow: async (senderId: any, recipientId: any, message: any) => {
         return await knock.workflows.trigger("test", {
             recipients: [recipientId],
-
-            // optional
-            data: { "project_name": "My Project" },
+            data: {  message },
             actor: senderId,
-            cancellationKey: "cancel_123",
         });
     }
 }
