@@ -27,5 +27,8 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.8.0",
     "prettier": "2.8.8"
+  },
+  "overrides": {
+    "semver": "^7.5.3"
   }
 }
