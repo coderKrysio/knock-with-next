@@ -11,21 +11,27 @@ export const KnockAPI = {
       .catch((err: any) => console.log(err));
   },
 
-  getUser: async (userId: any) => {
+  getUser: async (userId: string) => {
     return await knock.users.get(userId).catch((err: any) => console.log(err));
   },
 
-  getMessages: async (userId: any) => {
+  getMessages: async (userId: string) => {
     return await knock.users.getMessages(userId, {
       page_size: 5,
     });
   },
 
-  triggerWorkflow: async (senderId: any, recipientId: any, message: any) => {
-    return await knock.workflows.trigger("test", {
-      recipients: [recipientId],
-      data: { message },
-      actor: senderId,
-    });
+  triggerWorkflow: async (
+    senderId: string,
+    recipientId: string,
+    message: string
+  ) => {
+    return await knock.workflows
+      .trigger("test", {
+        recipients: [recipientId],
+        data: { message },
+        actor: senderId,
+      })
+      .catch((err: any) => console.log(err));
   },
 };

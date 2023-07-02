@@ -1,7 +1,8 @@
 import { KnockAPI } from "@/lib/knockapi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NotificationFeed from "./NotificationFeed";
 import { KnockFeedProvider } from "@knocklabs/react-notification-feed";
+import { KnockClient } from "@/lib/knockclient";
 
 const DisplayUser = ({ userData, recipientId }: any) => {
   const [message, setMessage] = useState("");
@@ -11,6 +12,10 @@ const DisplayUser = ({ userData, recipientId }: any) => {
     KnockAPI.triggerWorkflow(userData.cuid, recipientId, message);
     e.target.reset();
   };
+
+  useEffect(() => {
+    KnockClient.getAuth(userData.cuid);
+  });
 
   return (
     <KnockFeedProvider
